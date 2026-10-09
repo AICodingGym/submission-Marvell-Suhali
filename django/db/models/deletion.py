@@ -223,6 +223,7 @@ class Collector:
                         self.fast_deletes.append(sub_objs)
                     else:
                         related_model = related.related_model
+                        # Only load fields required for cascade traversal.
                         if not (
                             sub_objs.query.select_related or
                             signals.pre_delete.has_listeners(related_model) or
